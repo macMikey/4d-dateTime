@@ -5,14 +5,13 @@ Class constructor($theThing : Variant; $zuluOrLocal : Variant)
 	This._localSeconds:=This.nowSeconds+This.timezoneOffsetSeconds
 	
 	//<populate or compute this.seconds and this.localSeconds>
-	$valueType:=Value type($theThing)
-	$zuluOrLocal:=$zuluOrLocal || "local"  //default to local for objects and dates b/c 4d date/time are local
-	If ($valueType=Is text)  // quicken date
+	If (Value type($theThing)=Is text)  // quicken date
 		$date:=This._qDate($theThing)
-		$o:=New object("date"; $date; "time"; Time("00:00:00"))
-		This.seconds:=This._dateTimeToSeconds($o; $zuluOrLocal)
+		$zuluOrLocal:="local"
+		$theThing:=$date
 	End if   // $valueType= "is text"
 	
+	$valueType:=Value type($theThing)
 	$zuluOrLocal:=$zuluOrLocal || "local"  //default to local for objects and dates b/c 4d date/time are local
 	Case of 
 		: ($valueType=Is object)  // passed dateTimeObject
@@ -41,7 +40,14 @@ Function _computeNowSeconds()  // in zulu
 	$today:=Current date
 	$days:=$today-$Epoch_Date_D
 	$secondsToToday:=$days*86400
-	$secondsSinceMidnight:=Num(Current time)
+	$timeString:=String(Current time)
+	$hourString:=Substring($timeString; 1; 2)
+	$hour:=Num($hourString)
+	$minuteString:=Substring($timeString; 4; 2)
+	$minute:=Num($minuteString)
+	$secondString:=Substring($timeString; 7; 2)
+	$second:=Num($secondString)
+	$secondsSinceMidnight:=(3600*$hour)+(60*$minute)+$second
 	return $secondsToToday+$secondsSinceMidnight-This.timezoneOffsetSeconds  // 4D date/time are in local, and we are returning zulu
 	// _______________________________________________________________________________________________________________
 	
