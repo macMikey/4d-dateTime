@@ -1,0 +1,24 @@
+{
+	"_method_": {},
+	"cs.mdt": {
+		"dt": {
+			"new()": {
+				"Syntax": "**.new**( *theThing* : Variant; *zuluOrLocal* : Variant )",
+				"Params": [
+					[
+						"theThing",
+						"Variant",
+						"->"
+					],
+					[
+						"zuluOrLocal",
+						"Variant",
+						"->"
+					]
+				],
+				"Summary": ""
+			}
+		}
+	},
+	"dt": {}
+}
