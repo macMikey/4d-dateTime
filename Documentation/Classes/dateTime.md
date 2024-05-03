@@ -1,6 +1,6 @@
 <!-- Class for date/time maniupulation -->
 
-# class dt ( $input : variant { $timezone : text } )
+# class dateTime ( $input : variant { $timezone : text } )
 
 
 
@@ -104,7 +104,7 @@ N/A
 
 ## Examples
 ```4d
-$dt:=cs.mdt.dt.new( $seconds )
+$dt:=cs.mdt.dateTime.new( $seconds )
 alert ( $dt.dateString ) // because $seconds were passed, the date is computed
 ```
 
