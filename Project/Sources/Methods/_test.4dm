@@ -1,15 +1,15 @@
 //%attributes = {}
-var $x : cs.dateTime
+var $x : cs.static
 
-$x:=cs.dateTime.new()  //now
+$x:=cs.static.new()  //now
 ALERT($x.dateString)
 
-$x:=cs.dateTime.new("02/14/23")
+$x:=cs.static.new("02/14/23")
 ALERT(String($x.seconds))
 
 $o:=New object("date"; Current date; "time"; Current time)
-$x:=cs.dateTime.new($o)
+$x:=cs.static.new($o)
 ALERT($x.ISO)
 
-$x:=cs.dateTime.new("+")  // quickenDate format
+$x:=cs.static.new("+")  // quickenDate format
 ALERT($x.dateTimeShortString)

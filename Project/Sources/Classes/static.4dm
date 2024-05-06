@@ -14,7 +14,7 @@ Class constructor($theThing : Variant; $zuluOrLocal : Variant)
 	$valueType:=Value type($theThing)
 	$zuluOrLocal:=$zuluOrLocal || "local"  //default to local for objects and dates b/c 4d date/time are local
 	Case of 
-		: ($valueType=Is object)  // passed dateTimeObject
+		: ($valueType=Is object)  // passed static Object
 			This.seconds:=This._dateTimeToSeconds($theThing; $zuluOrLocal)
 		: ($valueType=Is real)  //passed seconds // 4d can't tell that integers are just integers
 			$zuluOrLocal:="zulu"  // don't accept local seconds
@@ -100,14 +100,14 @@ Function _computeProperties()
 	
 	
 	
-Function _dateTimeToSeconds($dateTimeObject : Object; $timezone : Variant)  //computes zulu for seeding the object
+Function _dateTimeToSeconds($staticObject : Object; $timezone : Variant)  //computes zulu for seeding the object
 	$timezone:=$timezone || "local"  //4d's date and time are local, so we expect them to come in local
 	
 	$Epoch_Date_D:=Date("1/1/1970")
 	
-	$numDays:=$dateTimeObject.date-$Epoch_Date_D
+	$numDays:=$staticObject.date-$Epoch_Date_D
 	$secondsToToday:=$numDays*86400
-	$secondsSinceMidnight:=Num($dateTimeObject.time)
+	$secondsSinceMidnight:=Num($staticObject.time)
 	If ($timezone="zulu")
 		$offset:=0
 	Else 

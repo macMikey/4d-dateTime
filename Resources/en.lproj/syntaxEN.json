@@ -1,7 +1,7 @@
 {
 	"_method_": {},
-	"cs.mdt": {
-		"dateTime": {
+	"cs.dateTime": {
+		"static": {
 			"new()": {
 				"Syntax": "**.new**( *theThing* : Variant; *zuluOrLocal* : Variant )",
 				"Params": [
@@ -20,5 +20,5 @@
 			}
 		}
 	},
-	"dateTime": {}
+	"static": {}
 }
