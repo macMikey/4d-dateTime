@@ -16,7 +16,7 @@ Class constructor($theThing : Variant; $zuluOrLocal : Variant)
 	Case of 
 		: ($valueType=Is object)  // passed static Object
 			This.seconds:=This._dateTimeToSeconds($theThing; $zuluOrLocal)
-		: ($valueType=Is real)  //passed seconds // 4d can't tell that integers are just integers
+		: (($valueType=Is real) | ($valueType=Is longint) | ($valueType=Is integer))  //passed seconds // 4d can't tell that integers are just integers
 			$zuluOrLocal:="zulu"  // don't accept local seconds
 			This.seconds:=$theThing
 		: ($valueType=Is date)
